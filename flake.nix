@@ -90,8 +90,15 @@
               treefmt-nix.flakeModule
             ];
 
+            # `treefmt` is declared as a submodule option by treefmt-nix's
+            # flake-module. The submodule's module body accepts the structural
+            # NixOS keyword `imports`, which composes additional treefmt-nix
+            # modules into it. Writing `treefmt.config.imports` instead would
+            # be interpreted as setting an option named `treefmt.imports`,
+            # which does not exist and breaks evaluation in the consuming
+            # flake-parts project.
             perSystem = _: {
-              treefmt.config.imports = [
+              treefmt.imports = [
                 ./preset.nix
               ];
             };
