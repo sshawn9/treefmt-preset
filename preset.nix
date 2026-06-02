@@ -39,7 +39,10 @@
     prettier.enable = lib.mkDefault true;
 
     # TOML formatter — https://github.com/tamasfe/taplo
-    taplo.enable = lib.mkDefault true;
+    taplo = {
+      enable = lib.mkDefault true;
+      settings.formatting.array_auto_collapse = lib.mkDefault false;
+    };
 
     # Protocol Buffers (.proto) — https://github.com/bufbuild/buf
     buf.enable = lib.mkDefault true;
