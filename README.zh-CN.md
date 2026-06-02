@@ -35,51 +35,51 @@
 条目都用 `lib.mkDefault` 设置，所以使用者可以通过普通的 Nix module merging
 禁用或替换任意 formatter。
 
-| Formatter                                                     | 语言 / 文件                                      |
-| ------------------------------------------------------------- | ------------------------------------------------ |
-| [`nixfmt`](https://github.com/NixOS/nixfmt)                   | Nix                                              |
-| [`deadnix`](https://github.com/astro/deadnix)                 | Nix 死代码查找和移除                             |
-| [`statix`](https://github.com/oppiliappan/statix)             | Nix linter / 反模式修复器                        |
-| [`ruff-format`](https://github.com/astral-sh/ruff)            | Python                                           |
-| [`clang-format`](https://clang.llvm.org/docs/ClangFormat.html) | C, C++, Objective-C, Java, Protobuf             |
-| [`rustfmt`](https://github.com/rust-lang/rustfmt)             | Rust                                             |
-| [`stylua`](https://github.com/JohnnyMorganz/StyLua)           | Lua                                              |
-| [`shfmt`](https://github.com/mvdan/sh)                        | Shell 脚本：bash、POSIX sh、mksh                 |
-| [`prettier`](https://prettier.io)                             | JS, TS, JSON, YAML, Markdown, HTML, CSS, GraphQL |
-| [`taplo`](https://github.com/tamasfe/taplo)                   | TOML                                             |
-| [`buf`](https://github.com/bufbuild/buf)                      | Protocol Buffers (`.proto`)                      |
-| [`just`](https://github.com/casey/just)                       | `justfile`                                       |
-| [`dockerfmt`](https://github.com/reteps/dockerfmt)            | Dockerfile                                       |
+| Formatter                                                      | 语言 / 文件                                      |
+| -------------------------------------------------------------- | ------------------------------------------------ |
+| [`nixfmt`](https://github.com/NixOS/nixfmt)                    | Nix                                              |
+| [`deadnix`](https://github.com/astro/deadnix)                  | Nix 死代码查找和移除                             |
+| [`statix`](https://github.com/oppiliappan/statix)              | Nix linter / 反模式修复器                        |
+| [`ruff-format`](https://github.com/astral-sh/ruff)             | Python                                           |
+| [`clang-format`](https://clang.llvm.org/docs/ClangFormat.html) | C, C++, Objective-C, Java, Protobuf              |
+| [`rustfmt`](https://github.com/rust-lang/rustfmt)              | Rust                                             |
+| [`stylua`](https://github.com/JohnnyMorganz/StyLua)            | Lua                                              |
+| [`shfmt`](https://github.com/mvdan/sh)                         | Shell 脚本：bash、POSIX sh、mksh                 |
+| [`prettier`](https://prettier.io)                              | JS, TS, JSON, YAML, Markdown, HTML, CSS, GraphQL |
+| [`taplo`](https://github.com/tamasfe/taplo)                    | TOML                                             |
+| [`buf`](https://github.com/bufbuild/buf)                       | Protocol Buffers (`.proto`)                      |
+| [`just`](https://github.com/casey/just)                        | `justfile`                                       |
+| [`dockerfmt`](https://github.com/reteps/dockerfmt)             | Dockerfile                                       |
 
 十三个 formatter 都可以在 Linux 和 Darwin 上运行。
 
 ## 我该用哪个入口？
 
-| 需求                                                   | 使用                                                   |
-| ------------------------------------------------------ | ------------------------------------------------------ |
-| 查看命令指南                                           | `nix run github:sshawn9/treefmt-preset`                |
-| 运行一次内置预设                                       | `nix run github:sshawn9/treefmt-preset#treefmt-preset` |
-| 导出内置预设配置                                       | `packages.${system}.treefmt-preset-export-config`      |
-| 进入带有全部命令的交互 shell                           | `nix shell github:sshawn9/treefmt-preset`              |
-| 在 NixOS 上安装命令                                    | `nixosModules.default`                                 |
-| 在 nix-darwin 上安装命令                               | `darwinModules.default`                                |
-| 通过 Home Manager 安装命令                             | `homeModules.default`                                  |
-| 在 flake-parts 项目中使用 Nix-native treefmt 配置      | `flakeModules.treefmt-preset`                          |
-| 从这个 flake 运行上游 treefmt                          | `packages.${system}.treefmt`                           |
-| 优先使用本地 `treefmt.toml`，否则使用预设              | `packages.${system}.treefmt-auto`                      |
+| 需求                                              | 使用                                                   |
+| ------------------------------------------------- | ------------------------------------------------------ |
+| 查看命令指南                                      | `nix run github:sshawn9/treefmt-preset`                |
+| 运行一次内置预设                                  | `nix run github:sshawn9/treefmt-preset#treefmt-preset` |
+| 导出内置预设配置                                  | `packages.${system}.treefmt-preset-export-config`      |
+| 进入带有全部命令的交互 shell                      | `nix shell github:sshawn9/treefmt-preset`              |
+| 在 NixOS 上安装命令                               | `nixosModules.default`                                 |
+| 在 nix-darwin 上安装命令                          | `darwinModules.default`                                |
+| 通过 Home Manager 安装命令                        | `homeModules.default`                                  |
+| 在 flake-parts 项目中使用 Nix-native treefmt 配置 | `flakeModules.treefmt-preset`                          |
+| 从这个 flake 运行上游 treefmt                     | `packages.${system}.treefmt`                           |
+| 优先使用本地 `treefmt.toml`，否则使用预设         | `packages.${system}.treefmt-auto`                      |
 
 ## 命令
 
 这个 flake 暴露五个具名命令。默认 package 和 app 是 helper，所以直接运行
 `nix run github:sshawn9/treefmt-preset` 只会显示信息，不会修改文件。
 
-| Package                             | Command                        | 行为                                                                                        |
-| ----------------------------------- | ------------------------------ | ------------------------------------------------------------------------------------------- |
-| `default` / `treefmt-preset-helper` | `treefmt-preset-helper`        | 打印每个命令和集成路径的指南。                                                              |
-| `treefmt-preset`                    | `treefmt-preset`               | 始终使用内置预设。不读取本地 `treefmt.toml`。                                                |
-| `treefmt-preset-export-config`      | `treefmt-preset-export-config` | 把生成的预设配置写入 `./.treefmt.toml`。                                                     |
-| `treefmt`                           | `treefmt`                      | 原样使用上游 treefmt。按 treefmt 的正常规则读取配置。                                        |
-| `treefmt-auto`                      | `treefmt-auto`                 | 如果找到本地 `treefmt.toml` / `.treefmt.toml` 就使用它，否则回退到预设。                    |
+| Package                             | Command                        | 行为                                                                     |
+| ----------------------------------- | ------------------------------ | ------------------------------------------------------------------------ |
+| `default` / `treefmt-preset-helper` | `treefmt-preset-helper`        | 打印每个命令和集成路径的指南。                                           |
+| `treefmt-preset`                    | `treefmt-preset`               | 始终使用内置预设。不读取本地 `treefmt.toml`。                            |
+| `treefmt-preset-export-config`      | `treefmt-preset-export-config` | 把生成的预设配置写入 `./.treefmt.toml`。                                 |
+| `treefmt`                           | `treefmt`                      | 原样使用上游 treefmt。按 treefmt 的正常规则读取配置。                    |
+| `treefmt-auto`                      | `treefmt-auto`                 | 如果找到本地 `treefmt.toml` / `.treefmt.toml` 就使用它，否则回退到预设。 |
 
 ### Tree Root 选择
 
@@ -259,12 +259,13 @@ programs.treefmt-preset.commands = [
 `nixosModules.default`、`darwinModules.default` 和 `homeModules.default` 模块
 都暴露同一套 `programs.treefmt-preset` 选项：
 
-| 选项                | 类型      | 默认值               | 效果                                                                                                                                                                            |
-| ------------------- | --------- | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `enable`            | bool      | `false`              | 总开关。                                                                                                                                                                        |
-| `commands`          | list enum | `[ "treefmt-preset" ]` | 要安装这个 flake 中的哪些命令 package。                                                                                                                                         |
-| `includeFormatters` | bool      | `true`               | 同时安装预设启用的每个 formatter 工具（`nixfmt`、`deadnix`、`statix`、`ruff`、`clang-format`、`rustfmt`、`stylua`、`shfmt`、`prettier`、`taplo`、`buf`、`just`、`dockerfmt`），让它们作为独立命令也能在 PATH 中找到，而不只是存在于 `treefmt-preset` wrapper 内。如果这些工具已经由另一个模块或项目 devShell 提供，可以设为 `false`。 |
-| `extraPackages`     | list pkg  | `[ ]`                | 和选中的命令一起额外安装的 package。                                                                                                                                            |
+<!-- prettier-ignore -->
+| 选项 | 类型 | 默认值 | 效果 |
+| --- | --- | --- | --- |
+| `enable` | bool | `false` | 总开关。 |
+| `commands` | list enum | `[ "treefmt-preset" ]` | 要安装这个 flake 中的哪些命令 package。 |
+| `includeFormatters` | bool | `true` | 同时安装预设启用的每个 formatter 工具（`nixfmt`、`deadnix`、`statix`、`ruff`、`clang-format`、`rustfmt`、`stylua`、`shfmt`、`prettier`、`taplo`、`buf`、`just`、`dockerfmt`），让它们作为独立命令也能在 PATH 中找到，而不只是存在于 `treefmt-preset` wrapper 内。如果这些工具已经由另一个模块或项目 devShell 提供，可以设为 `false`。 |
+| `extraPackages` | list pkg | `[ ]` | 和选中的命令一起额外安装的 package。 |
 
 ## Flake-Parts 项目预设
 

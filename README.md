@@ -38,21 +38,21 @@ The preset enables thirteen formatters covering the languages this repository
 is most commonly asked to format. Every entry is set with `lib.mkDefault`, so
 consumers can disable or replace any of them through normal Nix module merging.
 
-| Formatter                                                     | Languages / files                                |
-| ------------------------------------------------------------- | ------------------------------------------------ |
-| [`nixfmt`](https://github.com/NixOS/nixfmt)                   | Nix                                              |
-| [`deadnix`](https://github.com/astro/deadnix)                 | Nix dead-code finder and remover                 |
-| [`statix`](https://github.com/oppiliappan/statix)             | Nix linter / anti-pattern fixer                  |
-| [`ruff-format`](https://github.com/astral-sh/ruff)            | Python                                           |
-| [`clang-format`](https://clang.llvm.org/docs/ClangFormat.html) | C, C++, Objective-C, Java, Protobuf             |
-| [`rustfmt`](https://github.com/rust-lang/rustfmt)             | Rust                                             |
-| [`stylua`](https://github.com/JohnnyMorganz/StyLua)           | Lua                                              |
-| [`shfmt`](https://github.com/mvdan/sh)                        | Shell scripts: bash, POSIX sh, mksh              |
-| [`prettier`](https://prettier.io)                             | JS, TS, JSON, YAML, Markdown, HTML, CSS, GraphQL |
-| [`taplo`](https://github.com/tamasfe/taplo)                   | TOML                                             |
-| [`buf`](https://github.com/bufbuild/buf)                      | Protocol Buffers (`.proto`)                      |
-| [`just`](https://github.com/casey/just)                       | `justfile`                                       |
-| [`dockerfmt`](https://github.com/reteps/dockerfmt)            | Dockerfile                                       |
+| Formatter                                                      | Languages / files                                |
+| -------------------------------------------------------------- | ------------------------------------------------ |
+| [`nixfmt`](https://github.com/NixOS/nixfmt)                    | Nix                                              |
+| [`deadnix`](https://github.com/astro/deadnix)                  | Nix dead-code finder and remover                 |
+| [`statix`](https://github.com/oppiliappan/statix)              | Nix linter / anti-pattern fixer                  |
+| [`ruff-format`](https://github.com/astral-sh/ruff)             | Python                                           |
+| [`clang-format`](https://clang.llvm.org/docs/ClangFormat.html) | C, C++, Objective-C, Java, Protobuf              |
+| [`rustfmt`](https://github.com/rust-lang/rustfmt)              | Rust                                             |
+| [`stylua`](https://github.com/JohnnyMorganz/StyLua)            | Lua                                              |
+| [`shfmt`](https://github.com/mvdan/sh)                         | Shell scripts: bash, POSIX sh, mksh              |
+| [`prettier`](https://prettier.io)                              | JS, TS, JSON, YAML, Markdown, HTML, CSS, GraphQL |
+| [`taplo`](https://github.com/tamasfe/taplo)                    | TOML                                             |
+| [`buf`](https://github.com/bufbuild/buf)                       | Protocol Buffers (`.proto`)                      |
+| [`just`](https://github.com/casey/just)                        | `justfile`                                       |
+| [`dockerfmt`](https://github.com/reteps/dockerfmt)             | Dockerfile                                       |
 
 All thirteen run on both Linux and Darwin.
 
@@ -265,12 +265,13 @@ programs.treefmt-preset.commands = [
 The `nixosModules.default`, `darwinModules.default`, and `homeModules.default`
 modules all expose the same `programs.treefmt-preset` option set:
 
-| Option              | Type      | Default              | Effect                                                                                                                                                                          |
-| ------------------- | --------- | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `enable`            | bool      | `false`              | Master switch.                                                                                                                                                                  |
-| `commands`          | list enum | `[ "treefmt-preset" ]` | Which command packages from this flake to install.                                                                                                                              |
-| `includeFormatters` | bool      | `true`               | Also install every formatter tool the preset enables (`nixfmt`, `deadnix`, `statix`, `ruff`, `clang-format`, `rustfmt`, `stylua`, `shfmt`, `prettier`, `taplo`, `buf`, `just`, `dockerfmt`) so they are reachable as standalone PATH commands, not only inside the `treefmt-preset` wrapper. Set to `false` when these tools are already provided by another module or by a project devShell. |
-| `extraPackages`     | list pkg  | `[ ]`                | Additional packages to install alongside the selected commands.                                                                                                                 |
+<!-- prettier-ignore -->
+| Option | Type | Default | Effect |
+| --- | --- | --- | --- |
+| `enable` | bool | `false` | Master switch. |
+| `commands` | list enum | `[ "treefmt-preset" ]` | Which command packages from this flake to install. |
+| `includeFormatters` | bool | `true` | Also install every formatter tool the preset enables (`nixfmt`, `deadnix`, `statix`, `ruff`, `clang-format`, `rustfmt`, `stylua`, `shfmt`, `prettier`, `taplo`, `buf`, `just`, `dockerfmt`) so they are reachable as standalone PATH commands, not only inside the `treefmt-preset` wrapper. Set to `false` when these tools are already provided by another module or by a project devShell. |
+| `extraPackages` | list pkg | `[ ]` | Additional packages to install alongside the selected commands. |
 
 ## Flake-Parts Project Preset
 
