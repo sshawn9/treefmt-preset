@@ -1,5 +1,8 @@
 # treefmt-preset
 
+[![English](https://img.shields.io/badge/lang-English-blue)](./README.md)
+[![简体中文](https://img.shields.io/badge/lang-%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87-red)](./README.zh-CN.md)
+
 An opinionated treefmt preset and command bundle for Nix users.
 
 This repository is not a fork of `treefmt` or `treefmt-nix`. It is a thin
