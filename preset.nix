@@ -33,7 +33,10 @@
     stylua.enable = lib.mkDefault true;
 
     # Shell scripts: bash, POSIX sh, mksh — https://github.com/mvdan/sh
-    shfmt.enable = lib.mkDefault true;
+    shfmt = {
+      enable = lib.mkDefault true;
+      indent_size = lib.mkDefault 4;
+    };
 
     # JS, TS, JSON, YAML, Markdown, HTML, CSS, GraphQL — https://prettier.io
     prettier.enable = lib.mkDefault true;
